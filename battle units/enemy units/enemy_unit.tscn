@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://soqbvu72irg0"]
+
+[ext_resource type="Script" uid="uid://baieaooc32u6l" path="res://battle units/enemy units/enemy_unit.gd" id="1_nw1qf"]
+[ext_resource type="Script" uid="uid://obb0u2aw8iw4" path="res://battle units/debugger.gd" id="2_ffhot"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_b163u"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="4_vsmvj"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="5_h2yx7"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="6_vsmvj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ninq5"]
+
+[node name="Enemy Unit" type="CharacterBody2D" unique_id=304192555]
+script = ExtResource("1_nw1qf")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=684260562]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=846963117]
+
+[node name="Label" type="Label" parent="." unique_id=1674104817]
+offset_left = -87.0
+offset_top = -101.0
+offset_right = -47.0
+offset_bottom = -78.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2031135538]
+shape = SubResource("RectangleShape2D_ninq5")
+
+[node name="Debugger" type="Node2D" parent="." unique_id=1923618987]
+script = ExtResource("2_ffhot")
+
+[node name="Label" type="Label" parent="Debugger" unique_id=926132761]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="StateChart" type="Node" parent="." unique_id=1856974435]
+script = ExtResource("3_b163u")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="ActiveStatus" type="Node" parent="StateChart" unique_id=1614005404]
+script = ExtResource("4_vsmvj")
+initial_state = NodePath("Inactive")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="Active" type="Node" parent="StateChart/ActiveStatus" unique_id=853364264]
+script = ExtResource("4_vsmvj")
+initial_state = NodePath("NoAction")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="NoAction" type="Node" parent="StateChart/ActiveStatus/Active" unique_id=1451488833]
+script = ExtResource("5_h2yx7")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Moving" type="Node" parent="StateChart/ActiveStatus/Active" unique_id=1686228317]
+script = ExtResource("5_h2yx7")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="OtherAction" type="Node" parent="StateChart/ActiveStatus/Active" unique_id=973599392]
+script = ExtResource("5_h2yx7")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="ToMoving" type="Node" parent="StateChart/ActiveStatus/Active" unique_id=1629961781]
+script = ExtResource("6_vsmvj")
+to = NodePath("../Moving")
+event = &"move"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToAction" type="Node" parent="StateChart/ActiveStatus/Active" unique_id=492768684]
+script = ExtResource("6_vsmvj")
+to = NodePath("../OtherAction")
+event = &"action"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Inactive" type="Node" parent="StateChart/ActiveStatus" unique_id=1403298713]
+script = ExtResource("5_h2yx7")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="ToActive" type="Node" parent="StateChart/ActiveStatus" unique_id=1118824138]
+script = ExtResource("6_vsmvj")
+to = NodePath("../Active/NoAction")
+event = &"begin_turn"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToInactive" type="Node" parent="StateChart/ActiveStatus" unique_id=1132757108]
+script = ExtResource("6_vsmvj")
+to = NodePath("../Inactive")
+event = &"end_turn"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[connection signal="state_entered" from="StateChart/ActiveStatus/Active/NoAction" to="." method="_on_no_action_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/ActiveStatus/Active/Moving" to="." method="_on_moving_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/ActiveStatus/Active/OtherAction" to="." method="_on_other_action_state_entered"]

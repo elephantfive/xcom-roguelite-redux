@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dnhwmqk8t65lg"]
+
+[ext_resource type="Script" uid="uid://8172hlb0hl06" path="res://unit resources/player action buttons/shared actions/player_button.gd" id="1_luhuj"]
+
+[node name="Move" type="Button" unique_id=1015403916]
+text = "Move"
+script = ExtResource("1_luhuj")
+state_chart_event = "select_move"
+targeting_line_max_length = "movement_points"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

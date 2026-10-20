@@ -1,0 +1,37 @@
+extends Node
+const LEVEL_1 = preload("uid://cndrnqus88ybt")
+@onready var roster_manager = %"Roster Manager"
+const BATTLE_UNIT = preload("uid://e3wbfa7ftu2n")
+@onready var unit_actions = %"Unit Actions"
+var active_level
+@onready var turn_manager = %"Turn Manager"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	load_level.call_deferred(LEVEL_1)
+
+
+func load_level(level):
+	var new_level = level.instantiate()
+	add_child(new_level)
+	active_level = new_level
+	turn_manager.turn_list_reset()
+	for unit:Unit in roster_manager.active_roster:
+		for spawn_point in new_level.player_spawn_points.get_children():
+			var new_unit = BATTLE_UNIT.instantiate()
+			new_unit.unit = unit
+			new_unit.unit_actions = unit_actions
+			new_unit.global_position = spawn_point.global_position
+			new_unit.turn_manager = turn_manager
+			new_level.allies.add_child(new_unit)
+			for enemy in active_level.enemies.get_children():
+				enemy.targets.append(new_unit)
+				if enemy.target == null:
+					enemy.target = new_unit
+			spawn_point.queue_free()
+			break
+	for enemy in active_level.enemies.get_children():
+		turn_manager.turn_list.append(enemy)
+		enemy.turn_manager = turn_manager
+	

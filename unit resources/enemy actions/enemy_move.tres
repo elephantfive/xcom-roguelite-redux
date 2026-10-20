@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://dy0a17uapdr4t"]
+
+[ext_resource type="Script" uid="uid://dcs1r2lb0ncjb" path="res://unit resources/enemy actions/enemy_move.gd" id="1_t5fg2"]
+
+[resource]
+script = ExtResource("1_t5fg2")
+action_name = "move"
+metadata/_custom_type_script = "uid://u1o8snv8vyc2"

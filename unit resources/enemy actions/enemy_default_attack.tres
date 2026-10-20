@@ -1,0 +1,8 @@
+[gd_resource type="Resource" format=3 uid="uid://c5alpqlgf2h7o"]
+
+[ext_resource type="Script" uid="uid://dt2jwxcng0djm" path="res://unit resources/enemy actions/enemy_default_attack.gd" id="1_h45hu"]
+
+[resource]
+script = ExtResource("1_h45hu")
+action_name = "default_attack"
+metadata/_custom_type_script = "uid://u1o8snv8vyc2"

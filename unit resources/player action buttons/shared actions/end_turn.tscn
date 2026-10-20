@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dyjif00nvrla0"]
+
+[ext_resource type="Script" uid="uid://8172hlb0hl06" path="res://unit resources/player action buttons/shared actions/player_button.gd" id="1_ibxal"]
+
+[node name="EndTurn" type="Button" unique_id=1015403916]
+text = "End Turn"
+script = ExtResource("1_ibxal")
+state_chart_event = "end_turn"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

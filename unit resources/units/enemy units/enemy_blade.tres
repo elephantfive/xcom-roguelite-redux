@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EnemyUnit" format=3 uid="uid://bjmbvkg0at5ae"]
+
+[ext_resource type="Resource" uid="uid://dy0a17uapdr4t" path="res://unit resources/enemy actions/enemy_move.tres" id="1_kv7qp"]
+[ext_resource type="Script" uid="uid://u1o8snv8vyc2" path="res://unit resources/enemy actions/enemy_action.gd" id="1_ppy6s"]
+[ext_resource type="Script" uid="uid://bs3d32cux1gqj" path="res://unit resources/units/enemy units/enemy_unit.gd" id="1_ue60t"]
+[ext_resource type="Texture2D" uid="uid://cbivxk7ayt438" path="res://icon.svg" id="2_hckuu"]
+[ext_resource type="Resource" uid="uid://c5alpqlgf2h7o" path="res://unit resources/enemy actions/enemy_default_attack.tres" id="3_mtj0w"]
+
+[resource]
+script = ExtResource("1_ue60t")
+max_health = 1
+max_move_distance = 300.0
+actions = Array[ExtResource("1_ppy6s")]([ExtResource("1_kv7qp"), ExtResource("3_mtj0w")])
+sprite_texture = ExtResource("2_hckuu")
+metadata/_custom_type_script = "uid://bs3d32cux1gqj"
