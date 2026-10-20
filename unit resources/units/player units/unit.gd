@@ -13,4 +13,4 @@ extends Resource
 
 @export var actions: Array[PackedScene]
 
-@export var sprite_texture: Texture2D
+@export var texture: Texture2D

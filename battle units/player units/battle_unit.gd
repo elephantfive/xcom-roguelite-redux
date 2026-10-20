@@ -14,6 +14,7 @@ var active: bool = false
 var init_pos: Vector2
 var movement_destination: Vector2
 
+var texture: Texture2D
 var current_health: int
 var movement_points: float
 var distance_moved: float = 0.0
@@ -31,9 +32,18 @@ func _ready():
 		"distance_moved" : distance_moved,
 		"current_distance" : current_distance,
 	}
-	current_health = unit.max_health
-	movement_points = unit.max_move_distance
-	sprite.texture = unit.sprite_texture
+	
+	#Values to be used from unit resource
+	var set_values = [
+		"current_health",
+		"movement_points",
+		"texture",
+	]
+	
+	for value in set_values:
+		self.set(value, unit.get(value))
+		
+	sprite.texture = texture
 	
 	navigation_agent.path_desired_distance = 2.0
 	navigation_agent.target_desired_distance = 2.0
@@ -44,6 +54,7 @@ func turn_reset():
 	movement_points = unit.max_move_distance
 
 func targeting_line_create():
+	#Reset targeting line and set origin at self, target at mouse
 	current_distance = 0
 	targeting_line.clear_points()
 	targeting_line.add_point(init_pos - global_position)
@@ -51,7 +62,7 @@ func targeting_line_create():
 
 	if navigation_agent.is_navigation_finished():
 		return
-		
+	#Add points to line and distance between points to current travel distance
 	for point in navigation_agent.get_current_navigation_path():
 		targeting_line.add_point(point - global_position)
 	for i in range(navigation_agent.get_current_navigation_path().size() - 1):

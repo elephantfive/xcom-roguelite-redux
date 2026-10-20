@@ -1,13 +1,11 @@
 [gd_scene format=3 uid="uid://bwats0t6onicq"]
 
-[ext_resource type="Script" uid="uid://dbxrv6hfnogmy" path="res://game.gd" id="1_7jktm"]
 [ext_resource type="Script" uid="uid://cmqs0as72rnhb" path="res://turn_manager.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://b181blhvxbn8f" path="res://level_manager.gd" id="2_feb5d"]
 [ext_resource type="Script" uid="uid://deoo1ovetfkue" path="res://roster_manager.gd" id="3_feb5d"]
 [ext_resource type="Resource" uid="uid://c6grd8v4s76sm" path="res://unit resources/units/player units/unit_blade.tres" id="4_fc0e3"]
 
 [node name="Game" type="Node2D" unique_id=260638931]
-script = ExtResource("1_7jktm")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=2117772507]
 unique_name_in_owner = true

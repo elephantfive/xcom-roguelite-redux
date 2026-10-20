@@ -10,5 +10,5 @@ script = ExtResource("2_nihwm")
 max_health = 1
 max_move_distance = 300.0
 actions = Array[PackedScene]([ExtResource("1_dsnks"), ExtResource("2_8hstj")])
-sprite_texture = ExtResource("3_nihwm")
+texture = ExtResource("3_nihwm")
 metadata/_custom_type_script = "uid://ccb4lh2c0aap6"
