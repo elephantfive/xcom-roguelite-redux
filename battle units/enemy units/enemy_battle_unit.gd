@@ -1,29 +1,12 @@
 class_name EnemyBattleUnit
-extends CharacterBody2D
+extends BattleUnit
 #region Initialization
 @export var unit: EnemyUnit
 var targets = []
 var target
-var turn_manager
-
-@onready var sprite = $Sprite2D
-@onready var unit_actions
-@onready var label = $Label
-@onready var navigation_agent = $NavigationAgent2D
-@onready var state_chart = $StateChart
 
 var current_action:EnemyAction
-var active: bool = false
-var init_pos: Vector2
-var movement_destination: Vector2
 
-var current_health: int
-var movement_points: float
-var distance_moved: float = 0.0
-
-var debug_values: Dictionary
-
-var movement_speed: float = 10000.0
 #endregion
 
 func _ready():
@@ -32,9 +15,7 @@ func _ready():
 		"movement_points" : movement_points,
 		"distance_moved" : distance_moved,
 	}
-	current_health = unit.max_health
-	movement_points = unit.max_move_distance
-	sprite.texture = unit.sprite_texture
+	set_values(unit)
 	
 	navigation_agent.path_desired_distance = 2.0
 	navigation_agent.target_desired_distance = 2.0

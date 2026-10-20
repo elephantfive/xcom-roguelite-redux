@@ -1,28 +1,13 @@
-extends CharacterBody2D
+class_name AllyBattleUnit
+extends BattleUnit
 #region Initialization
 @export var unit: Unit
 @onready var targeting_line = $"Targeting Line"
 
-@onready var sprite = $Sprite2D
-@onready var unit_actions
-@onready var state_chart = $StateChart
-@onready var label = $Label
-@onready var navigation_agent = $NavigationAgent2D
 
-var turn_manager
-var active: bool = false
-var init_pos: Vector2
-var movement_destination: Vector2
 
-var texture: Texture2D
-var current_health: int
-var movement_points: float
-var distance_moved: float = 0.0
 var current_distance: float = 0.0
 
-var debug_values: Dictionary
-
-var movement_speed: float = 10000.0
 #endregion
 
 func _ready():
@@ -34,16 +19,7 @@ func _ready():
 	}
 	
 	#Values to be used from unit resource
-	var set_values = [
-		"current_health",
-		"movement_points",
-		"texture",
-	]
-	
-	for value in set_values:
-		self.set(value, unit.get(value))
-		
-	sprite.texture = texture
+	set_values(unit)
 	
 	navigation_agent.path_desired_distance = 2.0
 	navigation_agent.target_desired_distance = 2.0

@@ -1,2 +1,0 @@
-class_name UnalignedUnit
-extends CharacterBody2D

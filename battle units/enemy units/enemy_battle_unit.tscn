@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://soqbvu72irg0"]
 
-[ext_resource type="Script" uid="uid://baieaooc32u6l" path="res://battle units/enemy units/enemy_unit.gd" id="1_nw1qf"]
+[ext_resource type="Script" uid="uid://baieaooc32u6l" path="res://battle units/enemy units/enemy_battle_unit.gd" id="1_nw1qf"]
 [ext_resource type="Script" uid="uid://obb0u2aw8iw4" path="res://battle units/debugger.gd" id="2_ffhot"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_b163u"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="4_vsmvj"]
