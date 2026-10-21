@@ -34,12 +34,12 @@ metadata/_custom_type_script = "uid://bambbrd2wupx0"
 
 [sub_resource type="Resource" id="Resource_v08ma"]
 script = ExtResource("9_5y4x0")
-state = NodePath("../../../../../Targeting Line/StateChart/TargetingValidity/Valid")
+state = NodePath("../../../../../Targeting Line/StateChart/TargetingState/TargetingValidity/Valid")
 metadata/_custom_type_script = "uid://bambbrd2wupx0"
 
 [sub_resource type="Resource" id="Resource_m7st6"]
 script = ExtResource("9_5y4x0")
-state = NodePath("../../../../../Targeting Line/StateChart/TargetingValidity/Valid")
+state = NodePath("../../../../../Targeting Line/StateChart/TargetingState/TargetingValidity/Valid")
 metadata/_custom_type_script = "uid://bambbrd2wupx0"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ninq5"]
@@ -61,41 +61,88 @@ script = ExtResource("2_06lyj")
 script = ExtResource("3_ujwwk")
 metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="TargetingValidity" type="Node" parent="Targeting Line/StateChart" unique_id=1572540785]
+[node name="TargetingState" type="Node" parent="Targeting Line/StateChart" unique_id=789632338]
+script = ExtResource("7_yp1al")
+metadata/_custom_type_script = "uid://c1vp0ojjvaby1"
+
+[node name="TargetingValidity" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=56389344]
 script = ExtResource("4_o8rk0")
 initial_state = NodePath("Valid")
 metadata/_custom_type_script = "uid://jk2jm1g6q853"
 
-[node name="Valid" type="Node" parent="Targeting Line/StateChart/TargetingValidity" unique_id=47060101]
+[node name="Valid" type="Node" parent="Targeting Line/StateChart/TargetingState/TargetingValidity" unique_id=47060101]
 script = ExtResource("5_6gwag")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="TooLong" type="Node" parent="Targeting Line/StateChart/TargetingValidity" unique_id=1344047356]
+[node name="Invalid" type="Node" parent="Targeting Line/StateChart/TargetingState/TargetingValidity" unique_id=1795898055]
 script = ExtResource("5_6gwag")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="Blocked" type="Node" parent="Targeting Line/StateChart/TargetingValidity" unique_id=583747527]
+[node name="TargetingLength" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=2141549584]
+script = ExtResource("4_o8rk0")
+initial_state = NodePath("InvalidLength")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="InvalidLength" type="Node" parent="Targeting Line/StateChart/TargetingState/TargetingLength" unique_id=1344047356]
 script = ExtResource("5_6gwag")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="ToValid" type="Node" parent="Targeting Line/StateChart/TargetingValidity" unique_id=1041622530]
+[node name="ValidLength" type="Node" parent="Targeting Line/StateChart/TargetingState/TargetingLength" unique_id=1220818249]
+script = ExtResource("5_6gwag")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="TargetingBlocked" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=801485002]
+script = ExtResource("4_o8rk0")
+initial_state = NodePath("Blocked")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="Blocked" type="Node" parent="Targeting Line/StateChart/TargetingState/TargetingBlocked" unique_id=583747527]
+script = ExtResource("5_6gwag")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="NotBlocked" type="Node" parent="Targeting Line/StateChart/TargetingState/TargetingBlocked" unique_id=1826331516]
+script = ExtResource("5_6gwag")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="ToValid" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=1041622530]
 script = ExtResource("6_upfqu")
-to = NodePath("../Valid")
+to = NodePath("../TargetingValidity/Valid")
 event = &"valid"
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
-[node name="ToTooLong" type="Node" parent="Targeting Line/StateChart/TargetingValidity" unique_id=2112633818]
+[node name="ToInvalid" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=1575084367]
 script = ExtResource("6_upfqu")
-to = NodePath("../TooLong")
-event = &"too_long"
+to = NodePath("../TargetingValidity/Invalid")
+event = &"invalid"
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
-[node name="ToBlocked" type="Node" parent="Targeting Line/StateChart/TargetingValidity" unique_id=785346039]
+[node name="ToInvalidLength" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=2112633818]
 script = ExtResource("6_upfqu")
-to = NodePath("../Blocked")
+to = NodePath("../TargetingLength/InvalidLength")
+event = &"invalid_length"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToValidLength" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=592063781]
+script = ExtResource("6_upfqu")
+to = NodePath("../TargetingLength/ValidLength")
+event = &"valid_length"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToBlocked" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=785346039]
+script = ExtResource("6_upfqu")
+to = NodePath("../TargetingBlocked/Blocked")
 event = &"blocked"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToNotBlocked" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=382283787]
+script = ExtResource("6_upfqu")
+to = NodePath("../TargetingBlocked/NotBlocked")
+event = &"not_blocked"
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
@@ -247,9 +294,9 @@ script = ExtResource("11_cttfn")
 offset_right = 40.0
 offset_bottom = 23.0
 
-[connection signal="state_entered" from="Targeting Line/StateChart/TargetingValidity/Valid" to="Targeting Line" method="_on_valid_state_entered"]
-[connection signal="state_entered" from="Targeting Line/StateChart/TargetingValidity/TooLong" to="Targeting Line" method="_on_too_long_state_entered"]
-[connection signal="state_entered" from="Targeting Line/StateChart/TargetingValidity/Blocked" to="Targeting Line" method="_on_blocked_state_entered"]
+[connection signal="state_entered" from="Targeting Line/StateChart/TargetingState/TargetingValidity/Valid" to="Targeting Line" method="_on_valid_state_entered"]
+[connection signal="state_entered" from="Targeting Line/StateChart/TargetingState/TargetingLength/InvalidLength" to="Targeting Line" method="_on_too_long_state_entered"]
+[connection signal="state_entered" from="Targeting Line/StateChart/TargetingState/TargetingBlocked/Blocked" to="Targeting Line" method="_on_blocked_state_entered"]
 [connection signal="state_entered" from="StateChart/TurnState/PlayerTurn" to="." method="_on_player_turn_state_entered"]
 [connection signal="state_exited" from="StateChart/TurnState/PlayerTurn" to="." method="_on_player_turn_state_exited"]
 [connection signal="state_entered" from="StateChart/TurnState/PlayerTurn/ActionState/Targeting" to="." method="_on_targeting_state_entered"]
