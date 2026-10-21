@@ -1,8 +1,8 @@
-class_name AllyBattleUnit
+class_name PlayerBattleUnit
 extends BattleUnit
 #region Initialization
-@export var unit: PlayerUnit
 @onready var targeting_line = $"Targeting Line"
+const PLAYER_BUTTON = preload("uid://dnhwmqk8t65lg")
 #endregion
 
 func _ready():
@@ -11,15 +11,16 @@ func _ready():
 		"movement_points" : movement_points,
 	}
 	
-	set_values(unit)
+	set_values()
 	init_navigation_agent()
 	create_action_buttons()
 
 func create_action_buttons():
 	for action in unit.actions:
-		var new_action = action.instantiate()
-		new_action.unit = self
-		unit_actions.add_child(new_action)
+		var new_action_button = PLAYER_BUTTON.instantiate()
+		new_action_button.action = action
+		new_action_button.unit = self
+		unit_actions.add_child(new_action_button)
 
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
@@ -31,7 +32,7 @@ func _on_move_state_processing(_delta):
 
 func _on_move_state_input(event):
 	if event.is_action_pressed('left_click'):
-		state_chart.send_event('move')
+		state_chart.send_event('execute_move')
 
 
 func _on_moving_state_physics_processing(delta):
@@ -66,8 +67,18 @@ func _on_targeting_state_input(event):
 
 
 func _on_player_turn_state_exited():
-	turn_manager.advance_turn()
+	end_turn()
 
 
 func _on_player_turn_state_entered():
-	turn_reset(unit)
+	turn_reset()
+
+
+func _on_non_move_action_state_input(event):
+	if event.is_action_pressed('left_click'):
+		state_chart.send_event('execute_action')
+	end_turn()
+
+
+func _on_execute_non_move_action_state_entered():
+	current_action.action(targeting_cursor.target)
