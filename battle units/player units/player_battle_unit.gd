@@ -10,7 +10,7 @@ func _ready():
 		"current_health" : current_health,
 		"movement_points" : movement_points,
 	}
-	target = get_global_mouse_position()
+	
 	set_values()
 	init_navigation_agent()
 	create_action_buttons()
@@ -32,7 +32,7 @@ func _on_move_state_processing(_delta):
 
 func _on_move_state_input(event):
 	if event.is_action_pressed('left_click'):
-		state_chart.send_event('move')
+		state_chart.send_event('execute_move')
 
 
 func _on_moving_state_physics_processing(delta):
@@ -67,8 +67,18 @@ func _on_targeting_state_input(event):
 
 
 func _on_player_turn_state_exited():
-	turn_manager.advance_turn()
+	end_turn()
 
 
 func _on_player_turn_state_entered():
 	turn_reset()
+
+
+func _on_non_move_action_state_input(event):
+	if event.is_action_pressed('left_click'):
+		state_chart.send_event('execute_action')
+	end_turn()
+
+
+func _on_execute_non_move_action_state_entered():
+	current_action.action(targeting_cursor.target)

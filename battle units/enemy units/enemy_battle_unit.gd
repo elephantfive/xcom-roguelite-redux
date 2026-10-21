@@ -53,10 +53,6 @@ func _on_moving_state_physics_processing(delta):
 	movement_points -= global_position.distance_to(last_position)
 	last_position = global_position
 
-func end_turn():
-	state_chart.send_event('end_turn')
-	turn_manager.advance_turn()
-
 
 func _on_no_action_state_entered():
 	turn_reset()

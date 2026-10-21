@@ -4,8 +4,18 @@
 [ext_resource type="Script" uid="uid://b181blhvxbn8f" path="res://level_manager.gd" id="2_feb5d"]
 [ext_resource type="Script" uid="uid://deoo1ovetfkue" path="res://roster_manager.gd" id="3_feb5d"]
 [ext_resource type="Resource" uid="uid://cwodphqc46to5" path="res://unit resources/units/player units/player_blade.tres" id="4_fc0e3"]
+[ext_resource type="Script" uid="uid://depj5n3mmhynf" path="res://targeting_cursor.gd" id="5_7jktm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay34d"]
 
 [node name="Game" type="Node2D" unique_id=260638931]
+
+[node name="TargetingCursor" type="Area2D" parent="." unique_id=2115522552]
+unique_name_in_owner = true
+script = ExtResource("5_7jktm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetingCursor" unique_id=1298496336]
+shape = SubResource("RectangleShape2D_ay34d")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=2117772507]
 unique_name_in_owner = true
@@ -41,3 +51,5 @@ script = ExtResource("2_feb5d")
 unique_name_in_owner = true
 script = ExtResource("3_feb5d")
 active_unit_1 = ExtResource("4_fc0e3")
+
+[connection signal="body_entered" from="TargetingCursor" to="TargetingCursor" method="_on_body_entered"]

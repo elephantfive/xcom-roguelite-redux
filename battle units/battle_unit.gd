@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var navigation_agent:NavigationAgent2D = $NavigationAgent2D
 @onready var unit_actions
 
+var targeting_cursor: Area2D
 var target
 var current_action
 var turn_manager
@@ -55,3 +56,7 @@ func calculate_action_distance():
 
 func set_movement_target(_target):
 	pass
+
+func end_turn():
+	state_chart.send_event('end_turn')
+	turn_manager.advance_turn()

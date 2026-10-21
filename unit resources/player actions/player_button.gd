@@ -9,6 +9,8 @@ func _ready():
 func _on_pressed():
 	unit.init_pos = unit.position
 	unit.current_action = action
-	unit.state_chart.send_event('action')
-	print(action.action_name)
+	if action.action_name != 'Move':
+		unit.state_chart.send_event('target_action')
+	else:
+		unit.state_chart.send_event('target_move')
 	

@@ -80,7 +80,7 @@ metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
 [node name="TargetingLength" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=2141549584]
 script = ExtResource("5_vvieh")
-initial_state = NodePath("InvalidLength")
+initial_state = NodePath("ValidLength")
 metadata/_custom_type_script = "uid://jk2jm1g6q853"
 
 [node name="InvalidLength" type="Node" parent="Targeting Line/StateChart/TargetingState/TargetingLength" unique_id=1344047356]
@@ -93,7 +93,7 @@ metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
 [node name="TargetingBlocked" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=801485002]
 script = ExtResource("5_vvieh")
-initial_state = NodePath("Blocked")
+initial_state = NodePath("NotBlocked")
 metadata/_custom_type_script = "uid://jk2jm1g6q853"
 
 [node name="Blocked" type="Node" parent="Targeting Line/StateChart/TargetingState/TargetingBlocked" unique_id=583747527]
@@ -231,12 +231,12 @@ metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 [node name="ToMove" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState" unique_id=1080946799]
 script = ExtResource("7_6so0p")
 to = NodePath("../Targeting/Move")
-event = &"select_move"
+event = &"target_move"
 guard = SubResource("Resource_7jktm")
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
-[node name="ToDefaultAttack" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState" unique_id=394524362]
+[node name="ToNonMoveAction" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState" unique_id=394524362]
 script = ExtResource("7_6so0p")
 to = NodePath("../Targeting/NonMoveAction")
 event = &"target_action"
@@ -247,12 +247,12 @@ metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 [node name="ToMoving" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState" unique_id=1506709244]
 script = ExtResource("7_6so0p")
 to = NodePath("../ExecutingAction/Moving")
-event = &"move"
+event = &"execute_move"
 guard = SubResource("Resource_v08ma")
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
-[node name="ToDefaultAttacking" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState" unique_id=438795914]
+[node name="ToExecuteNonMoveAction" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState" unique_id=438795914]
 script = ExtResource("7_6so0p")
 to = NodePath("../ExecutingAction/ExecuteNonMoveAction")
 event = &"execute_action"
@@ -304,5 +304,7 @@ offset_bottom = 23.0
 [connection signal="state_input" from="StateChart/TurnState/PlayerTurn/ActionState/Targeting" to="." method="_on_targeting_state_input"]
 [connection signal="state_input" from="StateChart/TurnState/PlayerTurn/ActionState/Targeting/Move" to="." method="_on_move_state_input"]
 [connection signal="state_processing" from="StateChart/TurnState/PlayerTurn/ActionState/Targeting/Move" to="." method="_on_move_state_processing"]
+[connection signal="state_input" from="StateChart/TurnState/PlayerTurn/ActionState/Targeting/NonMoveAction" to="." method="_on_non_move_action_state_input"]
 [connection signal="state_entered" from="StateChart/TurnState/PlayerTurn/ActionState/ExecutingAction/Moving" to="." method="_on_moving_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/TurnState/PlayerTurn/ActionState/ExecutingAction/Moving" to="." method="_on_moving_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/TurnState/PlayerTurn/ActionState/ExecutingAction/ExecuteNonMoveAction" to="." method="_on_execute_non_move_action_state_entered"]

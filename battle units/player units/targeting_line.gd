@@ -20,6 +20,7 @@ func _on_blocked_state_entered():
 	default_color = Color(1.0, 1.0, 0.0, 1.0)
 
 func _process(_delta):
+	state_chart.send_event('valid')
 	length = 0
 	for point in points.size() - 1:
 		length += points[point].distance_to(points[point + 1])
@@ -33,6 +34,7 @@ func _process(_delta):
 		state_chart.send_event('blocked')
 	else:
 		state_chart.send_event('not_blocked')
+	
 
 func create_points(ability_max_length:float, ability_is_movement:bool = false, ability_is_blockable:bool = true):
 	#Reset targeting line and set origin at self, target at mouse

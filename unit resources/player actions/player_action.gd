@@ -7,5 +7,5 @@ var unit: PlayerBattleUnit
 @export var max_targeting_length: float = 300.0
 @export var min_targeting_length: float = 0.0
 
-func action():
+func action(target):
 	pass
