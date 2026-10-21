@@ -8,8 +8,8 @@
 
 [resource]
 script = ExtResource("1_ue60t")
-max_health = 1
-max_move_distance = 300.0
 actions = Array[ExtResource("1_ppy6s")]([ExtResource("1_kv7qp"), ExtResource("3_mtj0w")])
-sprite_texture = ExtResource("2_hckuu")
+unit_name = "Enemy"
+max_health = 1
+texture = ExtResource("2_hckuu")
 metadata/_custom_type_script = "uid://bs3d32cux1gqj"

@@ -4,48 +4,40 @@ extends BattleUnit
 @export var unit: EnemyUnit
 var targets = []
 var target
-
 var current_action:EnemyAction
-
 #endregion
 
 func _ready():
 	debug_values = {
 		"current_health" : current_health,
 		"movement_points" : movement_points,
-		"distance_moved" : distance_moved,
+		"action_points": action_points,
 	}
-	set_values(unit)
 	
-	navigation_agent.path_desired_distance = 2.0
-	navigation_agent.target_desired_distance = 2.0
+	set_values(unit)
+	init_navigation_agent()
+	
 	for action in unit.actions:
 		action.unit = self
 
-func turn_reset():
-	distance_moved = 0.0
-
-func process_turn():
-	for potential_target in targets:
-		if position.distance_to(potential_target.position) < position.distance_to(target.position):
-			target = potential_target
-			
-	for action:EnemyAction in unit.actions:
-		if action.action_name != 'move' and position.distance_to(target.position) <= action.max_targeting_length and position.distance_to(target.position) >= action.min_targeting_length:
-			action.action()
-			break
-		elif action.action_name == 'move':
-			action.action()
-			break
 
 func range_check():
 	var viable_action:EnemyAction
 	for action:EnemyAction in unit.actions:
-		if action.action_name != 'move' and position.distance_to(target.position) <= action.max_targeting_length and position.distance_to(target.position) >= action.min_targeting_length:
+		if action.action_name != 'move' and calculate_action_range() <= action.max_targeting_length and calculate_action_range() >= action.min_targeting_length and action.action_point_cost <= action_points:
 			viable_action = action
 	if viable_action:
 		current_action = viable_action
 		return true
+
+func calculate_action_range():
+	set_movement_target(target.position)
+	var _next_path_position: Vector2 = navigation_agent.get_next_path_position()
+	var action_range: float = 0
+	for i in range(navigation_agent.get_current_navigation_path().size() - 1):
+		action_range += (navigation_agent.get_current_navigation_path()[i].distance_to(navigation_agent.get_current_navigation_path()[i + 1]))
+	return action_range
+	
 
 
 func set_movement_target(movement_target: Vector2):
@@ -60,7 +52,7 @@ func _on_moving_state_physics_processing(delta):
 	var next_path_position: Vector2 = navigation_agent.get_next_path_position()
 	var new_velocity = current_agent_position.direction_to(next_path_position) * movement_speed * delta
 
-	if distance_moved < movement_points and not range_check() and position.distance_to(target.position) > movement_points:
+	if movement_points > 0 and not range_check() and calculate_action_range() > movement_points:
 		velocity = new_velocity
 	else:
 		velocity = Vector2(0, 0)
@@ -69,7 +61,7 @@ func _on_moving_state_physics_processing(delta):
 		else:
 			end_turn()
 	move_and_slide()
-	distance_moved += global_position.distance_to(last_position)
+	movement_points -= global_position.distance_to(last_position)
 	last_position = global_position
 
 func end_turn():
@@ -78,7 +70,7 @@ func end_turn():
 
 
 func _on_no_action_state_entered():
-	turn_reset()
+	turn_reset(unit)
 	for potential_target in targets:
 		if position.distance_to(potential_target.position) < position.distance_to(target.position):
 			target = potential_target
@@ -90,4 +82,5 @@ func _on_no_action_state_entered():
 
 func _on_other_action_state_entered():
 	current_action.action()
+	action_points -= current_action.action_point_cost
 	end_turn()

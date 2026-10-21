@@ -11,17 +11,22 @@ var turn_manager
 var texture: Texture2D
 var init_pos: Vector2
 var movement_destination: Vector2
+var action_points: int
 var current_health: int
 var movement_points: float
-var distance_moved: float = 0.0
 var movement_speed: float = 10000.0
 var debug_values: Dictionary
 
+func init_navigation_agent():
+	navigation_agent.path_desired_distance = 2.0
+	navigation_agent.target_desired_distance = 2.0
+
+#Values to be used from unit resource
 func set_values(unit):
-	#Values to be used from unit resource
 	var value_list = [
 		"current_health",
 		"movement_points",
+		"action_points",
 		"texture",
 	]
 	
@@ -29,3 +34,6 @@ func set_values(unit):
 		self.set(value, unit.get(value))
 		
 	sprite.texture = texture
+
+func turn_reset(unit):
+	movement_points = unit.movement_points

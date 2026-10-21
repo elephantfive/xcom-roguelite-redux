@@ -6,5 +6,6 @@
 text = "End Turn"
 script = ExtResource("1_ibxal")
 state_chart_event = "end_turn"
+action_point_cost = 0
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

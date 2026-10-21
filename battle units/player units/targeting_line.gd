@@ -12,7 +12,7 @@ func _on_too_long_state_entered():
 	default_color = Color(1, 0, 0)
 
 func _process(_delta):
-	if battle_unit.current_distance > max_length:
+	if battle_unit.current_targeting_line_length > max_length:
 		state_chart.send_event('too_long')
 	else:
 		state_chart.send_event('valid')

@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_t5fg2")
 action_name = "move"
+action_point_cost = 0
 metadata/_custom_type_script = "uid://u1o8snv8vyc2"

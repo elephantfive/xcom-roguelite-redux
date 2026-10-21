@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cmqs0as72rnhb" path="res://turn_manager.gd" id="1_e2o6t"]
 [ext_resource type="Script" uid="uid://b181blhvxbn8f" path="res://level_manager.gd" id="2_feb5d"]
 [ext_resource type="Script" uid="uid://deoo1ovetfkue" path="res://roster_manager.gd" id="3_feb5d"]
-[ext_resource type="Resource" uid="uid://c6grd8v4s76sm" path="res://unit resources/units/player units/unit_blade.tres" id="4_fc0e3"]
+[ext_resource type="Resource" uid="uid://cwodphqc46to5" path="res://unit resources/units/player units/player_blade.tres" id="4_fc0e3"]
 
 [node name="Game" type="Node2D" unique_id=260638931]
 
@@ -14,6 +14,20 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Current Turn Indicator" type="Label" parent="HUD" unique_id=1840622543]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
 
 [node name="Turn Manager" type="Node" parent="." unique_id=2101431482]
 unique_name_in_owner = true
