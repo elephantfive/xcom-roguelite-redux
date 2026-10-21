@@ -1,10 +1,11 @@
 class_name BattleUnit
 extends CharacterBody2D
 
-@onready var sprite = $Sprite2D
+@onready var sprite:Sprite2D = $Sprite2D
 @onready var state_chart = $StateChart
-@onready var label = $Label
-@onready var navigation_agent = $NavigationAgent2D
+@onready var blocked_checker:RayCast2D = $BlockedChecker
+@onready var label:Label = $Label
+@onready var navigation_agent:NavigationAgent2D = $NavigationAgent2D
 @onready var unit_actions
 
 var turn_manager

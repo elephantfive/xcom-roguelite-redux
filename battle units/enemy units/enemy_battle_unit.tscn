@@ -12,6 +12,8 @@
 [node name="Enemy Unit" type="CharacterBody2D" unique_id=304192555]
 script = ExtResource("1_nw1qf")
 
+[node name="BlockedChecker" type="RayCast2D" parent="." unique_id=333848688]
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=684260562]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=846963117]

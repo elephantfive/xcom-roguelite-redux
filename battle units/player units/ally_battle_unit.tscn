@@ -51,6 +51,8 @@ script = ExtResource("1_g4fae")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=846963117]
 
+[node name="BlockedChecker" type="RayCast2D" parent="." unique_id=1040614026]
+
 [node name="Targeting Line" type="Line2D" parent="." unique_id=420272089]
 visible = false
 script = ExtResource("2_06lyj")
@@ -247,6 +249,7 @@ offset_bottom = 23.0
 
 [connection signal="state_entered" from="Targeting Line/StateChart/TargetingValidity/Valid" to="Targeting Line" method="_on_valid_state_entered"]
 [connection signal="state_entered" from="Targeting Line/StateChart/TargetingValidity/TooLong" to="Targeting Line" method="_on_too_long_state_entered"]
+[connection signal="state_entered" from="Targeting Line/StateChart/TargetingValidity/Blocked" to="Targeting Line" method="_on_blocked_state_entered"]
 [connection signal="state_entered" from="StateChart/TurnState/PlayerTurn" to="." method="_on_player_turn_state_entered"]
 [connection signal="state_exited" from="StateChart/TurnState/PlayerTurn" to="." method="_on_player_turn_state_exited"]
 [connection signal="state_entered" from="StateChart/TurnState/PlayerTurn/ActionState/Targeting" to="." method="_on_targeting_state_entered"]

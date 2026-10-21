@@ -16,3 +16,7 @@ func _process(_delta):
 		state_chart.send_event('too_long')
 	else:
 		state_chart.send_event('valid')
+
+
+func _on_blocked_state_entered():
+	default_color = Color(1.0, 1.0, 0.0, 1.0)

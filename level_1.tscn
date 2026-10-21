@@ -9,6 +9,9 @@ vertices = PackedVector2Array(19.09375, 625.1094, 5.390625, 119.21094, 60.4375, 
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(11, 12, 13, 14, 6), PackedInt32Array(6, 14, 7), PackedInt32Array(0, 2, 15), PackedInt32Array(5, 0, 15, 16), PackedInt32Array(3, 5, 16, 10), PackedInt32Array(10, 9, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -6, 10, 659, 211, 332, 329, 526, 256, 120, 741, 564, 635, 310, 1073, 616, 902, 294, 630, 28, 506, 154, 213, -1, 159, 258, 69, 403)])
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_663r8"]
+size = Vector2(140, 20)
+
 [node name="Level 1" type="Node2D" unique_id=1747866975]
 script = ExtResource("1_3hls8")
 
@@ -32,3 +35,9 @@ unique_name_in_owner = true
 [node name="Enemy Unit" parent="Entities/Enemies" unique_id=304192555 instance=ExtResource("2_hn12h")]
 position = Vector2(688, 224)
 unit = ExtResource("3_hn12h")
+
+[node name="TestCollider" type="StaticBody2D" parent="." unique_id=1128002418]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestCollider" unique_id=880424346]
+position = Vector2(180, 396)
+shape = SubResource("RectangleShape2D_663r8")
