@@ -1,6 +1,8 @@
 class_name Unit
 extends Resource
 
+@export var actions: Array[Resource]
+
 @export var unit_name: String
 
 @export var max_health: int

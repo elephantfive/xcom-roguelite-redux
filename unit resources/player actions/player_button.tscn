@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dnhwmqk8t65lg"]
+
+[ext_resource type="Script" uid="uid://8172hlb0hl06" path="res://unit resources/player actions/player_button.gd" id="1_elv4g"]
+
+[node name="PlayerButton" type="Button" unique_id=1015403916]
+script = ExtResource("1_elv4g")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

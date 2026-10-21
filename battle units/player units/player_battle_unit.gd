@@ -1,8 +1,8 @@
-class_name AllyBattleUnit
+class_name PlayerBattleUnit
 extends BattleUnit
 #region Initialization
-@export var unit: PlayerUnit
 @onready var targeting_line = $"Targeting Line"
+const PLAYER_BUTTON = preload("uid://dnhwmqk8t65lg")
 #endregion
 
 func _ready():
@@ -10,16 +10,17 @@ func _ready():
 		"current_health" : current_health,
 		"movement_points" : movement_points,
 	}
-	
-	set_values(unit)
+	target = get_global_mouse_position()
+	set_values()
 	init_navigation_agent()
 	create_action_buttons()
 
 func create_action_buttons():
 	for action in unit.actions:
-		var new_action = action.instantiate()
-		new_action.unit = self
-		unit_actions.add_child(new_action)
+		var new_action_button = PLAYER_BUTTON.instantiate()
+		new_action_button.action = action
+		new_action_button.unit = self
+		unit_actions.add_child(new_action_button)
 
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
@@ -70,4 +71,4 @@ func _on_player_turn_state_exited():
 
 
 func _on_player_turn_state_entered():
-	turn_reset(unit)
+	turn_reset()

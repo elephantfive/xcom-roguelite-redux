@@ -1,0 +1,308 @@
+[gd_scene format=3 uid="uid://e3wbfa7ftu2n"]
+
+[ext_resource type="Script" uid="uid://r7uvxvvi5fuh" path="res://battle units/player units/player_battle_unit.gd" id="1_ijvkh"]
+[ext_resource type="Script" uid="uid://boxor2irwxxf7" path="res://battle units/player units/targeting_line.gd" id="2_dsjpy"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="3_4hygl"]
+[ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="4_uw3gm"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="5_vvieh"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="6_cv414"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_6so0p"]
+[ext_resource type="Script" uid="uid://c6l0181f4ytps" path="res://addons/godot_state_charts/guard.gd" id="8_k2kem"]
+[ext_resource type="Script" uid="uid://bambbrd2wupx0" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="9_cqmy2"]
+[ext_resource type="Script" uid="uid://bxprlw40wl0c3" path="res://addons/godot_state_charts/all_of_guard.gd" id="10_d0kqt"]
+[ext_resource type="Script" uid="uid://obb0u2aw8iw4" path="res://battle units/debugger.gd" id="11_v5ou2"]
+
+[sub_resource type="Resource" id="Resource_ryrav"]
+script = ExtResource("9_cqmy2")
+state = NodePath("../../ActiveState/Active")
+metadata/_custom_type_script = "uid://bambbrd2wupx0"
+
+[sub_resource type="Resource" id="Resource_eow3j"]
+script = ExtResource("9_cqmy2")
+state = NodePath("../NoAction")
+metadata/_custom_type_script = "uid://bambbrd2wupx0"
+
+[sub_resource type="Resource" id="Resource_7jktm"]
+script = ExtResource("10_d0kqt")
+guards = Array[ExtResource("8_k2kem")]([SubResource("Resource_ryrav"), SubResource("Resource_eow3j")])
+metadata/_custom_type_script = "uid://bxprlw40wl0c3"
+
+[sub_resource type="Resource" id="Resource_feb5d"]
+script = ExtResource("9_cqmy2")
+state = NodePath("../../ActiveState/Active")
+metadata/_custom_type_script = "uid://bambbrd2wupx0"
+
+[sub_resource type="Resource" id="Resource_v08ma"]
+script = ExtResource("9_cqmy2")
+state = NodePath("../../../../../Targeting Line/StateChart/TargetingState/TargetingValidity/Valid")
+metadata/_custom_type_script = "uid://bambbrd2wupx0"
+
+[sub_resource type="Resource" id="Resource_m7st6"]
+script = ExtResource("9_cqmy2")
+state = NodePath("../../../../../Targeting Line/StateChart/TargetingState/TargetingValidity/Valid")
+metadata/_custom_type_script = "uid://bambbrd2wupx0"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ninq5"]
+
+[node name="Battle Unit" type="CharacterBody2D" unique_id=304192555]
+script = ExtResource("1_ijvkh")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=684260562]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=846963117]
+
+[node name="BlockedChecker" type="RayCast2D" parent="." unique_id=1040614026]
+
+[node name="Targeting Line" type="Line2D" parent="." unique_id=420272089]
+visible = false
+script = ExtResource("2_dsjpy")
+
+[node name="StateChart" type="Node" parent="Targeting Line" unique_id=777560002]
+script = ExtResource("3_4hygl")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="TargetingState" type="Node" parent="Targeting Line/StateChart" unique_id=789632338]
+script = ExtResource("4_uw3gm")
+metadata/_custom_type_script = "uid://c1vp0ojjvaby1"
+
+[node name="TargetingValidity" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=56389344]
+script = ExtResource("5_vvieh")
+initial_state = NodePath("Valid")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="Valid" type="Node" parent="Targeting Line/StateChart/TargetingState/TargetingValidity" unique_id=47060101]
+script = ExtResource("6_cv414")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Invalid" type="Node" parent="Targeting Line/StateChart/TargetingState/TargetingValidity" unique_id=1795898055]
+script = ExtResource("6_cv414")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="TargetingLength" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=2141549584]
+script = ExtResource("5_vvieh")
+initial_state = NodePath("InvalidLength")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="InvalidLength" type="Node" parent="Targeting Line/StateChart/TargetingState/TargetingLength" unique_id=1344047356]
+script = ExtResource("6_cv414")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="ValidLength" type="Node" parent="Targeting Line/StateChart/TargetingState/TargetingLength" unique_id=1220818249]
+script = ExtResource("6_cv414")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="TargetingBlocked" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=801485002]
+script = ExtResource("5_vvieh")
+initial_state = NodePath("Blocked")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="Blocked" type="Node" parent="Targeting Line/StateChart/TargetingState/TargetingBlocked" unique_id=583747527]
+script = ExtResource("6_cv414")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="NotBlocked" type="Node" parent="Targeting Line/StateChart/TargetingState/TargetingBlocked" unique_id=1826331516]
+script = ExtResource("6_cv414")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="ToValid" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=1041622530]
+script = ExtResource("7_6so0p")
+to = NodePath("../TargetingValidity/Valid")
+event = &"valid"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToInvalid" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=1575084367]
+script = ExtResource("7_6so0p")
+to = NodePath("../TargetingValidity/Invalid")
+event = &"invalid"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToInvalidLength" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=2112633818]
+script = ExtResource("7_6so0p")
+to = NodePath("../TargetingLength/InvalidLength")
+event = &"invalid_length"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToValidLength" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=592063781]
+script = ExtResource("7_6so0p")
+to = NodePath("../TargetingLength/ValidLength")
+event = &"valid_length"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToBlocked" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=785346039]
+script = ExtResource("7_6so0p")
+to = NodePath("../TargetingBlocked/Blocked")
+event = &"blocked"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToNotBlocked" type="Node" parent="Targeting Line/StateChart/TargetingState" unique_id=382283787]
+script = ExtResource("7_6so0p")
+to = NodePath("../TargetingBlocked/NotBlocked")
+event = &"not_blocked"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="StateChart" type="Node" parent="." unique_id=1290644806]
+script = ExtResource("3_4hygl")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="TurnState" type="Node" parent="StateChart" unique_id=1950629247]
+script = ExtResource("5_vvieh")
+initial_state = NodePath("PlayerTurn")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="PlayerTurn" type="Node" parent="StateChart/TurnState" unique_id=1805792971]
+script = ExtResource("4_uw3gm")
+metadata/_custom_type_script = "uid://c1vp0ojjvaby1"
+
+[node name="ActiveState" type="Node" parent="StateChart/TurnState/PlayerTurn" unique_id=1985406190]
+script = ExtResource("5_vvieh")
+initial_state = NodePath("Active")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="Active" type="Node" parent="StateChart/TurnState/PlayerTurn/ActiveState" unique_id=684683468]
+script = ExtResource("6_cv414")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Inactive" type="Node" parent="StateChart/TurnState/PlayerTurn/ActiveState" unique_id=214461194]
+script = ExtResource("6_cv414")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="ToActive" type="Node" parent="StateChart/TurnState/PlayerTurn/ActiveState" unique_id=1327405014]
+script = ExtResource("7_6so0p")
+to = NodePath("../Active")
+event = &"active"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToInactive" type="Node" parent="StateChart/TurnState/PlayerTurn/ActiveState" unique_id=503276891]
+script = ExtResource("7_6so0p")
+to = NodePath("../Inactive")
+event = &"inactive"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ActionState" type="Node" parent="StateChart/TurnState/PlayerTurn" unique_id=1208245755]
+script = ExtResource("5_vvieh")
+initial_state = NodePath("NoAction")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="NoAction" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState" unique_id=1565456078]
+script = ExtResource("6_cv414")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="Targeting" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState" unique_id=1407681782]
+script = ExtResource("5_vvieh")
+initial_state = NodePath("Move")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="Move" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState/Targeting" unique_id=173197691]
+script = ExtResource("6_cv414")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="NonMoveAction" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState/Targeting" unique_id=1434892911]
+script = ExtResource("6_cv414")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="ExecutingAction" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState" unique_id=1305210071]
+script = ExtResource("5_vvieh")
+initial_state = NodePath("Moving")
+metadata/_custom_type_script = "uid://jk2jm1g6q853"
+
+[node name="Moving" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState/ExecutingAction" unique_id=2101002038]
+script = ExtResource("6_cv414")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="ExecuteNonMoveAction" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState/ExecutingAction" unique_id=1753611604]
+script = ExtResource("6_cv414")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="ToNoAction" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState" unique_id=1486486763]
+script = ExtResource("7_6so0p")
+to = NodePath("../NoAction")
+event = &"no_action"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToMove" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState" unique_id=1080946799]
+script = ExtResource("7_6so0p")
+to = NodePath("../Targeting/Move")
+event = &"select_move"
+guard = SubResource("Resource_7jktm")
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToDefaultAttack" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState" unique_id=394524362]
+script = ExtResource("7_6so0p")
+to = NodePath("../Targeting/NonMoveAction")
+event = &"target_action"
+guard = SubResource("Resource_feb5d")
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToMoving" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState" unique_id=1506709244]
+script = ExtResource("7_6so0p")
+to = NodePath("../ExecutingAction/Moving")
+event = &"move"
+guard = SubResource("Resource_v08ma")
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToDefaultAttacking" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState" unique_id=438795914]
+script = ExtResource("7_6so0p")
+to = NodePath("../ExecutingAction/ExecuteNonMoveAction")
+event = &"execute_action"
+guard = SubResource("Resource_m7st6")
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="EnemyTurn" type="Node" parent="StateChart/TurnState" unique_id=41800623]
+script = ExtResource("6_cv414")
+metadata/_custom_type_script = "uid://cytafq8i1y8qm"
+
+[node name="ToPlayerTurn" type="Node" parent="StateChart/TurnState" unique_id=1273609555]
+script = ExtResource("7_6so0p")
+to = NodePath("../PlayerTurn")
+event = &"begin_turn"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="ToEnemyTurn" type="Node" parent="StateChart/TurnState" unique_id=163660537]
+script = ExtResource("7_6so0p")
+to = NodePath("../EnemyTurn")
+event = &"end_turn"
+delay_in_seconds = "0.0"
+metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
+
+[node name="Label" type="Label" parent="." unique_id=1674104817]
+offset_left = -87.0
+offset_top = -101.0
+offset_right = -47.0
+offset_bottom = -78.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2031135538]
+shape = SubResource("RectangleShape2D_ninq5")
+
+[node name="Debugger" type="Node2D" parent="." unique_id=35180862]
+script = ExtResource("11_v5ou2")
+
+[node name="Label" type="Label" parent="Debugger" unique_id=926132761]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="state_entered" from="Targeting Line/StateChart/TargetingState/TargetingValidity/Valid" to="Targeting Line" method="_on_valid_state_entered"]
+[connection signal="state_entered" from="Targeting Line/StateChart/TargetingState/TargetingLength/InvalidLength" to="Targeting Line" method="_on_too_long_state_entered"]
+[connection signal="state_entered" from="Targeting Line/StateChart/TargetingState/TargetingBlocked/Blocked" to="Targeting Line" method="_on_blocked_state_entered"]
+[connection signal="state_entered" from="StateChart/TurnState/PlayerTurn" to="." method="_on_player_turn_state_entered"]
+[connection signal="state_exited" from="StateChart/TurnState/PlayerTurn" to="." method="_on_player_turn_state_exited"]
+[connection signal="state_entered" from="StateChart/TurnState/PlayerTurn/ActionState/Targeting" to="." method="_on_targeting_state_entered"]
+[connection signal="state_exited" from="StateChart/TurnState/PlayerTurn/ActionState/Targeting" to="." method="_on_targeting_state_exited"]
+[connection signal="state_input" from="StateChart/TurnState/PlayerTurn/ActionState/Targeting" to="." method="_on_targeting_state_input"]
+[connection signal="state_input" from="StateChart/TurnState/PlayerTurn/ActionState/Targeting/Move" to="." method="_on_move_state_input"]
+[connection signal="state_processing" from="StateChart/TurnState/PlayerTurn/ActionState/Targeting/Move" to="." method="_on_move_state_processing"]
+[connection signal="state_entered" from="StateChart/TurnState/PlayerTurn/ActionState/ExecutingAction/Moving" to="." method="_on_moving_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/TurnState/PlayerTurn/ActionState/ExecutingAction/Moving" to="." method="_on_moving_state_physics_processing"]

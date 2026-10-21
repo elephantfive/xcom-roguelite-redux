@@ -1,16 +1,14 @@
-[gd_resource type="Resource" script_class="PlayerUnit" format=3 uid="uid://cwodphqc46to5"]
+[gd_resource type="Resource" script_class="Unit" format=3 uid="uid://cwodphqc46to5"]
 
-[ext_resource type="Script" uid="uid://ccb4lh2c0aap6" path="res://unit resources/units/player units/player_unit.gd" id="1_d7xov"]
-[ext_resource type="PackedScene" uid="uid://dnhwmqk8t65lg" path="res://unit resources/player action buttons/shared actions/move.tscn" id="1_kpomk"]
-[ext_resource type="PackedScene" uid="uid://dyjif00nvrla0" path="res://unit resources/player action buttons/shared actions/end_turn.tscn" id="2_ydbmp"]
-[ext_resource type="PackedScene" uid="uid://d2yrjivmeh2l3" path="res://unit resources/player action buttons/shared actions/default_attack.tscn" id="3_ydbmp"]
+[ext_resource type="Script" uid="uid://b44rq546d06dk" path="res://unit resources/units/unit.gd" id="1_nakey"]
+[ext_resource type="Resource" uid="uid://cokeehia65p4b" path="res://unit resources/player actions/shared actions/attack.tres" id="2_kpomk"]
+[ext_resource type="Resource" uid="uid://ci5vm11sh8t6f" path="res://unit resources/player actions/shared actions/move.tres" id="2_ydbmp"]
 [ext_resource type="Texture2D" uid="uid://cbivxk7ayt438" path="res://icon.svg" id="4_gwp4k"]
 
 [resource]
-script = ExtResource("1_d7xov")
-actions = Array[PackedScene]([ExtResource("1_kpomk"), ExtResource("3_ydbmp"), ExtResource("2_ydbmp")])
+script = ExtResource("1_nakey")
+actions = Array[Resource]([ExtResource("2_ydbmp"), ExtResource("2_kpomk")])
 unit_name = "Player"
 max_health = 5
 current_health = 5
 texture = ExtResource("4_gwp4k")
-metadata/_custom_type_script = "uid://ccb4lh2c0aap6"
