@@ -157,7 +157,7 @@ metadata/_custom_type_script = "uid://jk2jm1g6q853"
 script = ExtResource("5_6gwag")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="DefaultAttack" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState/Targeting" unique_id=1434892911]
+[node name="NonMoveAction" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState/Targeting" unique_id=1434892911]
 script = ExtResource("5_6gwag")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
@@ -170,7 +170,7 @@ metadata/_custom_type_script = "uid://jk2jm1g6q853"
 script = ExtResource("5_6gwag")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
-[node name="DefaultAttacking" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState/ExecutingAction" unique_id=1753611604]
+[node name="ExecuteNonMoveAction" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState/ExecutingAction" unique_id=1753611604]
 script = ExtResource("5_6gwag")
 metadata/_custom_type_script = "uid://cytafq8i1y8qm"
 
@@ -191,8 +191,8 @@ metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
 [node name="ToDefaultAttack" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState" unique_id=394524362]
 script = ExtResource("6_upfqu")
-to = NodePath("../Targeting/DefaultAttack")
-event = &"select_default_attack"
+to = NodePath("../Targeting/NonMoveAction")
+event = &"target_action"
 guard = SubResource("Resource_feb5d")
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
@@ -207,8 +207,8 @@ metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
 
 [node name="ToDefaultAttacking" type="Node" parent="StateChart/TurnState/PlayerTurn/ActionState" unique_id=438795914]
 script = ExtResource("6_upfqu")
-to = NodePath("../ExecutingAction/DefaultAttacking")
-event = &"default_attack"
+to = NodePath("../ExecutingAction/ExecuteNonMoveAction")
+event = &"execute_action"
 guard = SubResource("Resource_m7st6")
 delay_in_seconds = "0.0"
 metadata/_custom_type_script = "uid://cf1nsco3w0mf6"
