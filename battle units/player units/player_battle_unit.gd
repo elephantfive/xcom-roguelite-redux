@@ -27,7 +27,7 @@ func set_movement_target(movement_target: Vector2):
 
 #region State Processing
 func _on_move_state_processing(_delta):
-	targeting_line.create_points(movement_points, true, false)
+	targeting_line.create_points(current_action.max_targeting_length, current_action.is_movement, current_action.is_blockable)
 
 
 func _on_move_state_input(event):
@@ -77,8 +77,14 @@ func _on_player_turn_state_entered():
 func _on_non_move_action_state_input(event):
 	if event.is_action_pressed('left_click'):
 		state_chart.send_event('execute_action')
-	end_turn()
 
 
 func _on_execute_non_move_action_state_entered():
-	current_action.action(targeting_cursor.target)
+	if action_points >= current_action.action_point_cost:
+		current_action.action(targeting_cursor.target)
+		action_points -= current_action.action_point_cost
+	state_chart.send_event('no_action')
+
+
+func _on_non_move_action_state_physics_processing(_delta):
+	targeting_line.create_points(current_action.max_targeting_length, current_action.is_movement, current_action.is_blockable)

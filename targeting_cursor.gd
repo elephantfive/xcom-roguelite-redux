@@ -1,5 +1,6 @@
 extends Area2D
 var target
+@onready var current_target_indicator = %"Current Target Indicator"
 
 
 func _process(_delta):
@@ -8,3 +9,4 @@ func _process(_delta):
 
 func _on_body_entered(body):
 	target = body
+	current_target_indicator.text = "Target: " + target.name

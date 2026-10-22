@@ -3,11 +3,12 @@
 [ext_resource type="Script" uid="uid://b44rq546d06dk" path="res://unit resources/units/unit.gd" id="1_nakey"]
 [ext_resource type="Resource" uid="uid://cokeehia65p4b" path="res://unit resources/player actions/shared actions/attack.tres" id="2_kpomk"]
 [ext_resource type="Resource" uid="uid://ci5vm11sh8t6f" path="res://unit resources/player actions/shared actions/move.tres" id="2_ydbmp"]
+[ext_resource type="Resource" uid="uid://cgujeonnm7wvb" path="res://unit resources/player actions/shared actions/end_turn.tres" id="3_ydbmp"]
 [ext_resource type="Texture2D" uid="uid://cbivxk7ayt438" path="res://icon.svg" id="4_gwp4k"]
 
 [resource]
 script = ExtResource("1_nakey")
-actions = Array[Resource]([ExtResource("2_ydbmp"), ExtResource("2_kpomk")])
+actions = Array[Resource]([ExtResource("2_ydbmp"), ExtResource("2_kpomk"), ExtResource("3_ydbmp")])
 unit_name = "Player"
 max_health = 5
 current_health = 5

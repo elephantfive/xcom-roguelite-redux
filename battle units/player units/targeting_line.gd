@@ -13,6 +13,7 @@ func _on_valid_state_entered():
 
 
 func _on_too_long_state_entered():
+	state_chart.send_event('invalid')
 	default_color = Color(1, 0, 0)
 
 

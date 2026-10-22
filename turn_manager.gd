@@ -31,6 +31,6 @@ func advance_turn():
 
 func update_turn_indicator():
 	if current_turn == 0:
-		current_turn_indicator.text = str(turn_list[current_turn])
+		current_turn_indicator.text = "Current Turn: " + str(turn_list[current_turn])
 	else:
-		current_turn_indicator.text = turn_list[current_turn].unit.unit_name
+		current_turn_indicator.text = "Current Turn: " + turn_list[current_turn].unit.unit_name

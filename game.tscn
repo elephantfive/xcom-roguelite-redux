@@ -39,6 +39,11 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 
+[node name="Current Target Indicator" type="Label" parent="HUD" unique_id=1769467388]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="Turn Manager" type="Node" parent="." unique_id=2101431482]
 unique_name_in_owner = true
 script = ExtResource("1_e2o6t")

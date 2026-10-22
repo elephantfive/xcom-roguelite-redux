@@ -7,4 +7,6 @@ script = ExtResource("1_eeid3")
 action_name = "Move"
 action_point_cost = 0
 max_targeting_length = 0.0
+is_movement = true
+is_blockable = false
 metadata/_custom_type_script = "uid://bbw8bttebjnye"

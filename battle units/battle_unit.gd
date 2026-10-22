@@ -45,7 +45,7 @@ func turn_reset():
 
 func calculate_action_distance():
 	var action_range: float = 0
-	if current_action.action_name == 'move':
+	if current_action and current_action.action_name == 'move':
 		set_movement_target(target.position)
 		var _next_path_position: Vector2 = navigation_agent.get_next_path_position()
 		for i in range(navigation_agent.get_current_navigation_path().size() - 1):

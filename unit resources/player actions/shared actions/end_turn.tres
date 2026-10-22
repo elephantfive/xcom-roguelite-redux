@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PlayerAction" format=3 uid="uid://cgujeonnm7wvb"]
+
+[ext_resource type="Script" uid="uid://bbw8bttebjnye" path="res://unit resources/player actions/player_action.gd" id="1_jyr04"]
+
+[resource]
+script = ExtResource("1_jyr04")
+action_name = "End Turn"
+action_point_cost = 0
+max_targeting_length = 0.0
+is_blockable = false
+metadata/_custom_type_script = "uid://bbw8bttebjnye"
