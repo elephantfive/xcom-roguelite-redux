@@ -11,7 +11,8 @@ var active_level
 
 
 func _ready():
-	load_level.call_deferred(LEVEL_1)
+	#load_level.call_deferred(LEVEL_1)
+	pass
 
 
 func load_level(level):

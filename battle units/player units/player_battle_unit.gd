@@ -27,7 +27,7 @@ func set_movement_target(movement_target: Vector2):
 
 #region State Processing
 func _on_move_state_processing(_delta):
-	targeting_line.create_points(current_action.max_targeting_length, current_action.is_movement, current_action.is_blockable)
+	targeting_line.create_points(movement_points, current_action.is_movement, current_action.is_blockable)
 
 
 func _on_move_state_input(event):

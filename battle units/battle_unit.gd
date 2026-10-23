@@ -58,5 +58,6 @@ func set_movement_target(_target):
 	pass
 
 func end_turn():
+	action_points = unit.action_points
 	state_chart.send_event('end_turn')
 	turn_manager.advance_turn()
