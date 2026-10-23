@@ -5,6 +5,10 @@
 [ext_resource type="Script" uid="uid://deoo1ovetfkue" path="res://roster_manager.gd" id="3_feb5d"]
 [ext_resource type="Resource" uid="uid://cwodphqc46to5" path="res://unit resources/units/player units/player_blade.tres" id="4_fc0e3"]
 [ext_resource type="Script" uid="uid://depj5n3mmhynf" path="res://targeting_cursor.gd" id="5_7jktm"]
+[ext_resource type="PackedScene" uid="uid://b1o0timppo0mr" path="res://campaign map/campaign_map_location.tscn" id="6_eow3j"]
+[ext_resource type="PackedScene" uid="uid://bc8tvrow15es8" path="res://campaign map/player_map_unit.tscn" id="7_j5wjh"]
+[ext_resource type="Script" uid="uid://c5qrqlin46act" path="res://campaign map/campaign_map_location.gd" id="7_vef74"]
+[ext_resource type="Script" uid="uid://cw1qqb1fiw0n8" path="res://campaign map/player_map_unit.gd" id="9_hve3p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ay34d"]
 
@@ -20,29 +24,45 @@ shape = SubResource("RectangleShape2D_ay34d")
 [node name="HUD" type="CanvasLayer" parent="." unique_id=2117772507]
 unique_name_in_owner = true
 
-[node name="Unit Actions" type="HBoxContainer" parent="HUD" unique_id=388666344]
-unique_name_in_owner = true
+[node name="CombatHUD" type="Control" parent="HUD" unique_id=1800743625]
+visible = false
+layout_mode = 3
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Current Turn Indicator" type="Label" parent="HUD" unique_id=1840622543]
+[node name="Unit Actions" type="HBoxContainer" parent="HUD/CombatHUD" unique_id=388666344]
 unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Current Turn Indicator" type="Label" parent="HUD/CombatHUD" unique_id=1840622543]
+unique_name_in_owner = true
+layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -23.0
-offset_right = 20.0
+offset_left = 536.0
+offset_top = 585.0
+offset_right = 576.0
+offset_bottom = 608.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 
-[node name="Current Target Indicator" type="Label" parent="HUD" unique_id=1769467388]
+[node name="Current Target Indicator" type="Label" parent="HUD/CombatHUD" unique_id=1769467388]
 unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 585.0
 offset_right = 40.0
-offset_bottom = 23.0
+offset_bottom = 608.0
+grow_vertical = 0
 
 [node name="Turn Manager" type="Node" parent="." unique_id=2101431482]
 unique_name_in_owner = true
@@ -58,5 +78,17 @@ script = ExtResource("3_feb5d")
 active_unit_1 = ExtResource("4_fc0e3")
 
 [node name="CampaignMap" type="Node2D" parent="." unique_id=373820504]
+unique_name_in_owner = true
+
+[node name="CampaignMapLocation" parent="CampaignMap" unique_id=704056581 instance=ExtResource("6_eow3j")]
+offset_left = 679.0
+offset_top = 254.0
+offset_right = 815.0
+offset_bottom = 390.0
+script = ExtResource("7_vef74")
+
+[node name="PlayerMapUnit" parent="CampaignMap" unique_id=1668619619 instance=ExtResource("7_j5wjh")]
+position = Vector2(566, 483)
+script = ExtResource("9_hve3p")
 
 [connection signal="body_entered" from="TargetingCursor" to="TargetingCursor" method="_on_body_entered"]

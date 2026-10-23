@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cndrnqus88ybt"]
 
-[ext_resource type="Script" uid="uid://bvdrlv3wd1tjj" path="res://level_1.gd" id="1_3hls8"]
+[ext_resource type="Script" uid="uid://bvdrlv3wd1tjj" path="res://levels/level_1.gd" id="1_3hls8"]
 [ext_resource type="PackedScene" uid="uid://soqbvu72irg0" path="res://battle units/enemy units/enemy_battle_unit.tscn" id="2_hn12h"]
 [ext_resource type="Resource" uid="uid://bjmbvkg0at5ae" path="res://unit resources/units/enemy units/enemy_blade.tres" id="3_hn12h"]
 

@@ -12,6 +12,7 @@ extends CharacterBody2D
 var targeting_cursor: Area2D
 var effects = []
 var target
+var targets = []
 var current_action
 var turn_manager
 var texture: Texture2D
@@ -46,7 +47,7 @@ func turn_reset():
 	movement_points = unit.movement_points
 	for effect in effects:
 		if (effect.has("timer") and effect.timer > 0) or not effect.has("timer"):
-			effect.effect()
+			effect.apply_effect()
 		if (effect.has("timer") and effect.timer > 0):
 			effect.timer -= 1
 			
@@ -62,8 +63,8 @@ func calculate_action_distance():
 		action_range = position.distance_to(target.position)
 	return action_range 
 
-func set_movement_target(_target):
-	pass
+func set_movement_target(movement_target: Vector2):
+	navigation_agent.target_position = movement_target
 
 func end_turn():
 	state_chart.send_event('end_turn')

@@ -1,0 +1,2 @@
+class_name PlayerMapUnit
+extends CharacterBody2D

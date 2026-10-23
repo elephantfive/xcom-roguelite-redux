@@ -22,12 +22,9 @@ func create_action_buttons():
 		new_action_button.unit = self
 		unit_actions.add_child(new_action_button)
 
-func set_movement_target(movement_target: Vector2):
-	navigation_agent.target_position = movement_target
-
 #region State Processing
 func _on_move_state_processing(_delta):
-	targeting_line.create_points(movement_points, current_action.is_movement, current_action.is_blockable)
+	targeting_line.create_points(movement_points, current_action.is_nav_target, current_action.is_blockable)
 
 
 func _on_move_state_input(event):
@@ -80,11 +77,12 @@ func _on_non_move_action_state_input(event):
 
 
 func _on_execute_non_move_action_state_entered():
+	target = targeting_cursor.target
 	if action_points >= current_action.action_point_cost:
-		current_action.action(targeting_cursor.target)
+		current_action.apply_effects(target)
 		action_points -= current_action.action_point_cost
 	state_chart.send_event('no_action')
 
 
 func _on_non_move_action_state_physics_processing(_delta):
-	targeting_line.create_points(current_action.max_targeting_length, current_action.is_movement, current_action.is_blockable)
+	targeting_line.create_points(current_action.max_targeting_length, current_action.is_nav_target, current_action.is_blockable)

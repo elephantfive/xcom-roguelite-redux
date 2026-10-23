@@ -8,5 +8,6 @@ func _process(_delta):
 
 
 func _on_body_entered(body):
-	target = body
-	current_target_indicator.text = "Target: " + target.name
+	if body is BattleUnit:
+		target = body
+		current_target_indicator.text = "Target: " + target.name

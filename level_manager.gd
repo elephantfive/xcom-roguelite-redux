@@ -6,6 +6,7 @@ const BATTLE_UNIT = preload("uid://e3wbfa7ftu2n")
 @onready var unit_actions = %"Unit Actions"
 @onready var turn_manager = %"Turn Manager"
 @onready var targeting_cursor = %TargetingCursor
+@onready var combat_hud = $"../HUD/CombatHUD"
 
 var active_level
 
@@ -22,6 +23,7 @@ func load_level(level):
 	turn_manager.turn_list_reset()
 	generate_units(new_level)
 	generate_enemies()
+	combat_hud.show()
 	
 #Pass "global" variables/nodes to new unit
 func generate_units(new_level):

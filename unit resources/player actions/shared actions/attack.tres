@@ -1,8 +1,11 @@
-[gd_resource type="Resource" format=3 uid="uid://cokeehia65p4b"]
+[gd_resource type="Resource" script_class="PlayerAction" format=3 uid="uid://cokeehia65p4b"]
 
-[ext_resource type="Script" uid="uid://bitf34w2vqawq" path="res://unit resources/player actions/shared actions/attack.gd" id="1_tqana"]
+[ext_resource type="Script" uid="uid://csq8xs27y2mjn" path="res://unit resources/player actions/player action effects/player_action_effect.gd" id="1_ep0em"]
+[ext_resource type="Script" uid="uid://bbw8bttebjnye" path="res://unit resources/player actions/player_action.gd" id="1_tqana"]
+[ext_resource type="Resource" uid="uid://cx0rb1r4pow5c" path="res://unit resources/player actions/player action effects/instant_damage.tres" id="2_w1lvr"]
 
 [resource]
 script = ExtResource("1_tqana")
 action_name = "Attack"
+effects = Array[ExtResource("1_ep0em")]([ExtResource("2_w1lvr")])
 metadata/_custom_type_script = "uid://bbw8bttebjnye"

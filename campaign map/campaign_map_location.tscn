@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b1o0timppo0mr"]
+
+[ext_resource type="Texture2D" uid="uid://cbivxk7ayt438" path="res://icon.svg" id="1_kgnko"]
+
+[node name="CampaignMapLocation" type="Button" unique_id=702866430]
+icon = ExtResource("1_kgnko")

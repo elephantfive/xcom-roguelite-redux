@@ -1,8 +1,5 @@
 class_name EnemyBattleUnit
 extends BattleUnit
-#region Initialization
-var targets = []
-#endregion
 
 func _ready():
 	debug_values = {
@@ -26,11 +23,6 @@ func viable_action_range_check():
 	if viable_action:
 		current_action = viable_action
 		return true
-	
-
-
-func set_movement_target(movement_target: Vector2):
-	navigation_agent.target_position = movement_target
 
 
 func _on_moving_state_physics_processing(delta):
