@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cx4ehtvu2xygg"]
+
+[ext_resource type="Script" uid="uid://dcvh2fqf6ljlg" path="res://hud/campaign/roster_unit_button.gd" id="1_rl88a"]
+
+[node name="RosterUnitButton" type="Button" unique_id=594789866]
+script = ExtResource("1_rl88a")
+
+[node name="Label" type="Label" parent="." unique_id=69192396]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

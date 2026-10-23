@@ -5,7 +5,8 @@
 [ext_resource type="Script" uid="uid://deoo1ovetfkue" path="res://roster_manager.gd" id="3_feb5d"]
 [ext_resource type="Resource" uid="uid://cwodphqc46to5" path="res://unit resources/units/player units/player_blade.tres" id="4_fc0e3"]
 [ext_resource type="Script" uid="uid://depj5n3mmhynf" path="res://targeting_cursor.gd" id="5_7jktm"]
-[ext_resource type="PackedScene" uid="uid://b1o0timppo0mr" path="res://campaign map/campaign_map_location.tscn" id="6_eow3j"]
+[ext_resource type="PackedScene" uid="uid://b1o0timppo0mr" path="res://campaign map/locations/campaign_map_location.tscn" id="6_eow3j"]
+[ext_resource type="PackedScene" uid="uid://cx4ehtvu2xygg" path="res://hud/campaign/roster_unit_button.tscn" id="6_hve3p"]
 [ext_resource type="PackedScene" uid="uid://bc8tvrow15es8" path="res://campaign map/player_map_unit.tscn" id="7_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://cndrnqus88ybt" path="res://levels/level_1.tscn" id="7_vef74"]
 [ext_resource type="Script" uid="uid://cw1qqb1fiw0n8" path="res://campaign map/player_map_unit.gd" id="9_hve3p"]
@@ -64,6 +65,12 @@ offset_right = 40.0
 offset_bottom = 608.0
 grow_vertical = 0
 
+[node name="CampaignMapHUD" type="Control" parent="HUD" unique_id=62262041]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Turn Manager" type="Node" parent="." unique_id=2101431482]
 unique_name_in_owner = true
 script = ExtResource("1_e2o6t")
@@ -79,6 +86,9 @@ active_unit_1 = ExtResource("4_fc0e3")
 
 [node name="CampaignMap" type="Node2D" parent="." unique_id=373820504]
 unique_name_in_owner = true
+
+[node name="RosterUnitButton" parent="CampaignMap" unique_id=594789866 instance=ExtResource("6_hve3p")]
+unit = ExtResource("4_fc0e3")
 
 [node name="CampaignMapLocation" parent="CampaignMap" unique_id=704056581 instance=ExtResource("6_eow3j")]
 offset_left = 679.0
