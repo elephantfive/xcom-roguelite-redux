@@ -1,6 +1,55 @@
 [gd_scene format=3 uid="uid://b1o0timppo0mr"]
 
 [ext_resource type="Texture2D" uid="uid://cbivxk7ayt438" path="res://icon.svg" id="1_kgnko"]
+[ext_resource type="Script" uid="uid://c5qrqlin46act" path="res://campaign map/campaign_map_location.gd" id="2_ljxmk"]
 
 [node name="CampaignMapLocation" type="Button" unique_id=702866430]
 icon = ExtResource("1_kgnko")
+script = ExtResource("2_ljxmk")
+
+[node name="Popup" type="CanvasLayer" parent="." unique_id=171591866]
+visible = false
+
+[node name="Panel" type="Panel" parent="Popup" unique_id=34362649]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup" unique_id=609959766]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Description" type="Label" parent="Popup/VBoxContainer" unique_id=1132660090]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup/VBoxContainer" unique_id=377484851]
+layout_mode = 2
+
+[node name="LevelStart" type="Button" parent="Popup/VBoxContainer/HBoxContainer" unique_id=1360977577]
+layout_mode = 2
+text = "Begin Level"
+
+[node name="Exit" type="Button" parent="Popup/VBoxContainer/HBoxContainer" unique_id=1692185430]
+layout_mode = 2
+text = "Exit"
+
+[node name="Image" type="TextureRect" parent="Popup" unique_id=938474838]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_right = 64.0
+offset_bottom = 128.0
+grow_horizontal = 2
+texture = ExtResource("1_kgnko")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="pressed" from="Popup/VBoxContainer/HBoxContainer/LevelStart" to="." method="_on_level_start_pressed"]
+[connection signal="pressed" from="Popup/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]

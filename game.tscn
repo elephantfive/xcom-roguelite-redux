@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://depj5n3mmhynf" path="res://targeting_cursor.gd" id="5_7jktm"]
 [ext_resource type="PackedScene" uid="uid://b1o0timppo0mr" path="res://campaign map/campaign_map_location.tscn" id="6_eow3j"]
 [ext_resource type="PackedScene" uid="uid://bc8tvrow15es8" path="res://campaign map/player_map_unit.tscn" id="7_j5wjh"]
-[ext_resource type="Script" uid="uid://c5qrqlin46act" path="res://campaign map/campaign_map_location.gd" id="7_vef74"]
+[ext_resource type="PackedScene" uid="uid://cndrnqus88ybt" path="res://levels/level_1.tscn" id="7_vef74"]
 [ext_resource type="Script" uid="uid://cw1qqb1fiw0n8" path="res://campaign map/player_map_unit.gd" id="9_hve3p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ay34d"]
@@ -85,7 +85,7 @@ offset_left = 679.0
 offset_top = 254.0
 offset_right = 815.0
 offset_bottom = 390.0
-script = ExtResource("7_vef74")
+level = ExtResource("7_vef74")
 
 [node name="PlayerMapUnit" parent="CampaignMap" unique_id=1668619619 instance=ExtResource("7_j5wjh")]
 position = Vector2(566, 483)
