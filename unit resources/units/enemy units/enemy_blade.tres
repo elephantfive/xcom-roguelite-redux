@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://dy0a17uapdr4t" path="res://unit resources/enemy actions/enemy_move.tres" id="1_kv7qp"]
 [ext_resource type="Script" uid="uid://u1o8snv8vyc2" path="res://unit resources/enemy actions/enemy_action.gd" id="1_ppy6s"]
-[ext_resource type="Texture2D" uid="uid://cbivxk7ayt438" path="res://icon.svg" id="2_hckuu"]
+[ext_resource type="Texture2D" uid="uid://cbivxk7ayt438" path="res://assets/icon.svg" id="2_hckuu"]
 [ext_resource type="Resource" uid="uid://c5alpqlgf2h7o" path="res://unit resources/enemy actions/enemy_default_attack.tres" id="3_mtj0w"]
 [ext_resource type="Script" uid="uid://b44rq546d06dk" path="res://unit resources/units/unit.gd" id="4_mtj0w"]
 

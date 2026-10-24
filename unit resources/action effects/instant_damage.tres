@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PlayerActionEffect" format=3 uid="uid://cx0rb1r4pow5c"]
 
-[ext_resource type="Script" uid="uid://csq8xs27y2mjn" path="res://unit resources/player actions/player action effects/player_action_effect.gd" id="1_n3yu3"]
+[ext_resource type="Script" uid="uid://csq8xs27y2mjn" path="res://unit resources/action effects/action_effect.gd" id="1_n3yu3"]
 
 [resource]
 script = ExtResource("1_n3yu3")

@@ -1,3 +1,4 @@
+class_name TurnManager
 extends Node
 @onready var level_manager = %"Level Manager"
 @onready var current_turn_indicator = %"Current Turn Indicator"

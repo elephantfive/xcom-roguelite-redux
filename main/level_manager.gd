@@ -1,3 +1,4 @@
+class_name LevelManager
 extends Node
 const LEVEL_1 = preload("uid://cndrnqus88ybt")
 const BATTLE_UNIT = preload("uid://e3wbfa7ftu2n")

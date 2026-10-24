@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1o0timppo0mr"]
 
-[ext_resource type="Texture2D" uid="uid://cbivxk7ayt438" path="res://icon.svg" id="1_kgnko"]
+[ext_resource type="Texture2D" uid="uid://cbivxk7ayt438" path="res://assets/icon.svg" id="1_kgnko"]
 [ext_resource type="Script" uid="uid://c5qrqlin46act" path="res://campaign map/locations/campaign_map_location.gd" id="2_ljxmk"]
 
 [node name="CampaignMapLocation" type="Button" unique_id=702866430]

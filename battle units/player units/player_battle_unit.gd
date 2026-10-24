@@ -10,13 +10,12 @@ func _ready():
 		"current_health" : current_health,
 		"movement_points" : movement_points,
 	}
-	
 	set_values()
 	init_navigation_agent()
 	create_action_buttons()
 
 func create_action_buttons():
-	for action in unit.actions:
+	for action in actions:
 		var new_action_button = PLAYER_BUTTON.instantiate()
 		new_action_button.action = action
 		new_action_button.unit = self

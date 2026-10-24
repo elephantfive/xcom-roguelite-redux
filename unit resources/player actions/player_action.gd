@@ -16,7 +16,7 @@ var unit: PlayerBattleUnit
 
 @export var necessary_conditions: Array
 
-@export var effects: Array[PlayerActionEffect]
+@export var effects: Array[ActionEffect]
 
 func apply_effects(target):
 	for effect in effects:

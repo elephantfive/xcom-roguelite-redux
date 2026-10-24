@@ -9,12 +9,13 @@ extends CharacterBody2D
 @onready var navigation_agent:NavigationAgent2D = $NavigationAgent2D
 @onready var unit_actions
 
+var actions: Array
 var targeting_cursor: Area2D
 var effects = []
 var target
 var targets = []
 var current_action
-var turn_manager
+var turn_manager: TurnManager
 var texture: Texture2D
 var init_pos: Vector2
 var movement_destination: Vector2
@@ -30,14 +31,7 @@ func init_navigation_agent():
 
 #Values to be used from unit resource
 func set_values():
-	var value_list = [
-		"current_health",
-		"movement_points",
-		"action_points",
-		"texture",
-	]
-	
-	for value in value_list:
+	for value in unit.transfer_values:
 		self.set(value, unit.get(value))
 		
 	sprite.texture = texture

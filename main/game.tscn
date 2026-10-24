@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://bwats0t6onicq"]
+
+[ext_resource type="Script" uid="uid://depj5n3mmhynf" path="res://main/targeting_cursor.gd" id="1_j015t"]
+[ext_resource type="Script" uid="uid://cmqs0as72rnhb" path="res://main/turn_manager.gd" id="2_hlcqn"]
+[ext_resource type="Script" uid="uid://b181blhvxbn8f" path="res://main/level_manager.gd" id="3_v3ojx"]
+[ext_resource type="Script" uid="uid://deoo1ovetfkue" path="res://main/roster_manager.gd" id="4_f7m14"]
+[ext_resource type="PackedScene" uid="uid://cx4ehtvu2xygg" path="res://hud/campaign/roster_unit_button.tscn" id="6_0coyo"]
+[ext_resource type="PackedScene" uid="uid://b1o0timppo0mr" path="res://campaign map/locations/campaign_map_location.tscn" id="7_p6qvs"]
+[ext_resource type="PackedScene" uid="uid://cndrnqus88ybt" path="res://levels/level_1.tscn" id="8_bc3cr"]
+[ext_resource type="PackedScene" uid="uid://bc8tvrow15es8" path="res://campaign map/map units/player map units/player_map_unit.tscn" id="9_4u4fy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay34d"]
+
+[node name="Game" type="Node2D" unique_id=260638931]
+
+[node name="TargetingCursor" type="Area2D" parent="." unique_id=2115522552]
+unique_name_in_owner = true
+script = ExtResource("1_j015t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetingCursor" unique_id=1298496336]
+shape = SubResource("RectangleShape2D_ay34d")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=2117772507]
+unique_name_in_owner = true
+
+[node name="CombatHUD" type="Control" parent="HUD" unique_id=1345154370]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Unit Actions" type="HBoxContainer" parent="HUD/CombatHUD" unique_id=388666344]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Current Turn Indicator" type="Label" parent="HUD/CombatHUD" unique_id=1840622543]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 536.0
+offset_top = 585.0
+offset_right = 576.0
+offset_bottom = 608.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+
+[node name="Current Target Indicator" type="Label" parent="HUD/CombatHUD" unique_id=1769467388]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 585.0
+offset_right = 40.0
+offset_bottom = 608.0
+grow_vertical = 0
+
+[node name="CampaignMapHUD" type="CanvasLayer" parent="HUD" unique_id=1185070815]
+
+[node name="ActiveRoster" type="VBoxContainer" parent="HUD/CampaignMapHUD" unique_id=357893129]
+unique_name_in_owner = true
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -22.0
+offset_bottom = 22.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="RosterUnitButton" parent="HUD/CampaignMapHUD/ActiveRoster" unique_id=594789866 instance=ExtResource("6_0coyo")]
+layout_mode = 2
+
+[node name="RosterUnitButton2" parent="HUD/CampaignMapHUD/ActiveRoster" unique_id=217328840 instance=ExtResource("6_0coyo")]
+layout_mode = 2
+
+[node name="RosterUnitButton3" parent="HUD/CampaignMapHUD/ActiveRoster" unique_id=1693899467 instance=ExtResource("6_0coyo")]
+layout_mode = 2
+
+[node name="RosterUnitButton4" parent="HUD/CampaignMapHUD/ActiveRoster" unique_id=1702972152 instance=ExtResource("6_0coyo")]
+layout_mode = 2
+
+[node name="InactiveRoster" type="HBoxContainer" parent="HUD/CampaignMapHUD" unique_id=17608501]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ActivateRosterUnit" type="Button" parent="HUD/CampaignMapHUD" unique_id=788889672]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Node" type="Node" parent="HUD" unique_id=1371404569]
+
+[node name="Turn Manager" type="Node" parent="." unique_id=2101431482]
+unique_name_in_owner = true
+script = ExtResource("2_hlcqn")
+
+[node name="Level Manager" type="Node" parent="." unique_id=1842960656]
+unique_name_in_owner = true
+script = ExtResource("3_v3ojx")
+
+[node name="Roster Manager" type="Node" parent="." unique_id=2035732948]
+unique_name_in_owner = true
+script = ExtResource("4_f7m14")
+
+[node name="CampaignMap" type="Node2D" parent="." unique_id=373820504]
+unique_name_in_owner = true
+
+[node name="CampaignMapLocation" parent="CampaignMap" unique_id=704056581 instance=ExtResource("7_p6qvs")]
+offset_left = 679.0
+offset_top = 254.0
+offset_right = 815.0
+offset_bottom = 390.0
+level = ExtResource("8_bc3cr")
+
+[node name="PlayerMapUnit" parent="CampaignMap" unique_id=1668619619 instance=ExtResource("9_4u4fy")]
+position = Vector2(573, 493)
+
+[connection signal="body_entered" from="TargetingCursor" to="TargetingCursor" method="_on_body_entered"]

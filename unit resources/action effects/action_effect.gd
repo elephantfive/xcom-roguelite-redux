@@ -1,4 +1,4 @@
-class_name PlayerActionEffect
+class_name ActionEffect
 extends Resource
 
 @export var instant: bool = true
