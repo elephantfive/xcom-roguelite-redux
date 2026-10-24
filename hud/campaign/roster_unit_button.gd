@@ -6,14 +6,12 @@ extends Button
 var unit:Unit
 
 func _on_pressed():
-	if roster_manager.targeted_unit != self:
-		roster_manager.targeted_unit = self
-	else:
-		roster_manager.targeted_unit = null
-	label.text = ''
-	if unit:
+	roster_manager.toggle_unit_activation(self)
+	if label.text == '':
 		for value in unit.transfer_values:
 			label.text += (value + ': ' + str(unit.transfer_values[value]) + '\n')
+	else:
+		label.text = ''
 
 func load_unit():
 	icon = unit.texture

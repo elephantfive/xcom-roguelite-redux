@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://depj5n3mmhynf" path="res://main/targeting_cursor.gd" id="1_j015t"]
 [ext_resource type="Script" uid="uid://cmqs0as72rnhb" path="res://main/turn_manager.gd" id="2_hlcqn"]
+[ext_resource type="Script" uid="uid://dd8thjnn4dje2" path="res://main/roguelite_manager.gd" id="3_4u4fy"]
 [ext_resource type="Script" uid="uid://b181blhvxbn8f" path="res://main/level_manager.gd" id="3_v3ojx"]
 [ext_resource type="Script" uid="uid://deoo1ovetfkue" path="res://main/roster_manager.gd" id="4_f7m14"]
 [ext_resource type="PackedScene" uid="uid://cx4ehtvu2xygg" path="res://hud/campaign/roster_unit_button.tscn" id="6_0coyo"]
@@ -23,20 +24,17 @@ shape = SubResource("RectangleShape2D_ay34d")
 [node name="HUD" type="CanvasLayer" parent="." unique_id=2117772507]
 unique_name_in_owner = true
 
-[node name="CombatHUD" type="Control" parent="HUD" unique_id=1345154370]
+[node name="CombatHUD" type="CanvasLayer" parent="HUD" unique_id=49129604]
+unique_name_in_owner = true
 visible = false
-layout_mode = 3
-anchors_preset = 0
 
 [node name="Unit Actions" type="HBoxContainer" parent="HUD/CombatHUD" unique_id=388666344]
 unique_name_in_owner = true
-layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Current Turn Indicator" type="Label" parent="HUD/CombatHUD" unique_id=1840622543]
 unique_name_in_owner = true
-layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -52,7 +50,6 @@ size_flags_horizontal = 4
 
 [node name="Current Target Indicator" type="Label" parent="HUD/CombatHUD" unique_id=1769467388]
 unique_name_in_owner = true
-layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -62,6 +59,7 @@ offset_bottom = 608.0
 grow_vertical = 0
 
 [node name="CampaignMapHUD" type="CanvasLayer" parent="HUD" unique_id=1185070815]
+unique_name_in_owner = true
 
 [node name="ActiveRoster" type="VBoxContainer" parent="HUD/CampaignMapHUD" unique_id=357893129]
 unique_name_in_owner = true
@@ -79,21 +77,13 @@ grow_vertical = 2
 [node name="RosterUnitButton" parent="HUD/CampaignMapHUD/ActiveRoster" unique_id=594789866 instance=ExtResource("6_0coyo")]
 layout_mode = 2
 
-[node name="RosterUnitButton2" parent="HUD/CampaignMapHUD/ActiveRoster" unique_id=217328840 instance=ExtResource("6_0coyo")]
-layout_mode = 2
-
-[node name="RosterUnitButton3" parent="HUD/CampaignMapHUD/ActiveRoster" unique_id=1693899467 instance=ExtResource("6_0coyo")]
-layout_mode = 2
-
-[node name="RosterUnitButton4" parent="HUD/CampaignMapHUD/ActiveRoster" unique_id=1702972152 instance=ExtResource("6_0coyo")]
-layout_mode = 2
-
 [node name="InactiveRoster" type="HBoxContainer" parent="HUD/CampaignMapHUD" unique_id=17608501]
 unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ActivateRosterUnit" type="Button" parent="HUD/CampaignMapHUD" unique_id=788889672]
+unique_name_in_owner = true
 visible = false
 anchors_preset = 3
 anchor_left = 1.0
@@ -104,8 +94,24 @@ offset_left = -8.0
 offset_top = -8.0
 grow_horizontal = 0
 grow_vertical = 0
+text = "ee"
 
-[node name="Node" type="Node" parent="HUD" unique_id=1371404569]
+[node name="Roguelite Manager" type="Node" parent="." unique_id=1371404569]
+unique_name_in_owner = true
+script = ExtResource("3_4u4fy")
+
+[node name="Roguelite Layer" type="CanvasLayer" parent="Roguelite Manager" unique_id=1122003427]
+visible = false
+
+[node name="Panel" type="Panel" parent="Roguelite Manager/Roguelite Layer" unique_id=360968712]
+offset_right = 1150.0
+offset_bottom = 648.0
+
+[node name="FlowContainer" type="VSplitContainer" parent="Roguelite Manager/Roguelite Layer" unique_id=911294303]
+offset_right = 1172.0
+offset_bottom = 1172.0
+split_offsets = PackedInt32Array(136)
+split_offset = 136
 
 [node name="Turn Manager" type="Node" parent="." unique_id=2101431482]
 unique_name_in_owner = true
@@ -133,3 +139,4 @@ level = ExtResource("8_bc3cr")
 position = Vector2(573, 493)
 
 [connection signal="body_entered" from="TargetingCursor" to="TargetingCursor" method="_on_body_entered"]
+[connection signal="pressed" from="HUD/CampaignMapHUD/ActivateRosterUnit" to="Roster Manager" method="_on_activate_roster_unit_pressed"]

@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://cx4ehtvu2xygg"]
 
+[ext_resource type="Texture2D" uid="uid://cbivxk7ayt438" path="res://assets/icon.svg" id="1_0qnti"]
 [ext_resource type="Script" uid="uid://dcvh2fqf6ljlg" path="res://hud/campaign/roster_unit_button.gd" id="1_rl88a"]
 
 [node name="RosterUnitButton" type="Button" unique_id=594789866]
+icon = ExtResource("1_0qnti")
 script = ExtResource("1_rl88a")
 
 [node name="Label" type="Label" parent="." unique_id=69192396]
