@@ -107,7 +107,7 @@ visible = false
 offset_right = 1150.0
 offset_bottom = 648.0
 
-[node name="FlowContainer" type="VSplitContainer" parent="Roguelite Manager/Roguelite Layer" unique_id=911294303]
+[node name="RewardContainer" type="VSplitContainer" parent="Roguelite Manager/Roguelite Layer" unique_id=911294303]
 offset_right = 1172.0
 offset_bottom = 1172.0
 split_offsets = PackedInt32Array(136)
