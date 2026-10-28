@@ -7,4 +7,4 @@ var reward
 
 func load_reward():
 	reward_texture = reward.texture
-	reward_label.text = reward.label
+	reward_description.text = reward.reward_description

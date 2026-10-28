@@ -14,6 +14,8 @@ extends Resource
 
 @export var texture: Texture2D
 
+@export_multiline var reward_description: String
+
 var transfer_values = {
 	'unit_name': unit_name,
 	

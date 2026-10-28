@@ -32,7 +32,8 @@ func init_navigation_agent():
 #Values to be used from unit resource
 func set_values():
 	for value in unit.transfer_values:
-		self.set(value, unit.get(value))
+		if value in self:
+			self.set(value, unit.get(value))
 		
 	sprite.texture = texture
 

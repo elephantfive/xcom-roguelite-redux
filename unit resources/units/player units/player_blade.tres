@@ -8,8 +8,9 @@
 
 [resource]
 script = ExtResource("1_nakey")
-actions = Array[Resource]([ExtResource("2_ydbmp"), ExtResource("2_kpomk"), ExtResource("3_ydbmp")])
 unit_name = "Player"
+actions = Array[Resource]([ExtResource("2_ydbmp"), ExtResource("2_kpomk"), ExtResource("3_ydbmp")])
 max_health = 5
 current_health = 5
 texture = ExtResource("4_gwp4k")
+reward_description = "yo this is a multi-line test description! can't believe i've only just now uncovered this!"
