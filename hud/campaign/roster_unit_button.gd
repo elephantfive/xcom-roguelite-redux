@@ -17,3 +17,4 @@ func _on_pressed():
 func load_unit():
 	icon = unit.texture
 	
+	
