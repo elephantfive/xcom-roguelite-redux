@@ -5,7 +5,8 @@ var selected_reward
 
 const REWARD = preload("uid://u7tq6sykfl5m")
 @onready var button = $Button
-@onready var roster_manager = %"Roster Manager"
+var roster_manager: RosterManager
+var inventory: Inventory
 
 func _ready():
 	for reward in rewards:
