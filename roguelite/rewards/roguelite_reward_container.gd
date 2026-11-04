@@ -2,9 +2,10 @@ extends VBoxContainer
 
 @export var rewards: Array[Resource]
 var selected_reward
-var roster_manager: RosterManager
+
 const REWARD = preload("uid://u7tq6sykfl5m")
 @onready var button = $Button
+@onready var roster_manager = %"Roster Manager"
 
 func _ready():
 	for reward in rewards:

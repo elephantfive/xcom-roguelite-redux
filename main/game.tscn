@@ -79,6 +79,9 @@ grow_vertical = 2
 [node name="RosterUnitButton" parent="HUD/CampaignMapHUD/ActiveRoster" unique_id=594789866 instance=ExtResource("6_0coyo")]
 layout_mode = 2
 
+[node name="RosterUnitButton2" parent="HUD/CampaignMapHUD/ActiveRoster" unique_id=96963705 instance=ExtResource("6_0coyo")]
+layout_mode = 2
+
 [node name="InactiveRoster" type="HBoxContainer" parent="HUD/CampaignMapHUD" unique_id=17608501]
 unique_name_in_owner = true
 offset_right = 40.0
