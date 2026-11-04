@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://b1o0timppo0mr" path="res://campaign map/locations/campaign_map_location.tscn" id="7_p6qvs"]
 [ext_resource type="PackedScene" uid="uid://cndrnqus88ybt" path="res://levels/level_1.tscn" id="8_bc3cr"]
 [ext_resource type="PackedScene" uid="uid://bc8tvrow15es8" path="res://campaign map/map units/player map units/player_map_unit.tscn" id="9_4u4fy"]
+[ext_resource type="PackedScene" uid="uid://dydcc3l3l8vjf" path="res://roguelite/rewards/roguelite_reward_container.tscn" id="10_j015t"]
+[ext_resource type="Resource" uid="uid://cwodphqc46to5" path="res://unit resources/units/player units/player_blade.tres" id="11_hlcqn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ay34d"]
 
@@ -137,6 +139,9 @@ level = ExtResource("8_bc3cr")
 
 [node name="PlayerMapUnit" parent="CampaignMap" unique_id=1668619619 instance=ExtResource("9_4u4fy")]
 position = Vector2(573, 493)
+
+[node name="RogueliteRewardContainer" parent="." unique_id=1806190985 instance=ExtResource("10_j015t")]
+rewards = Array[Resource]([ExtResource("11_hlcqn"), ExtResource("11_hlcqn")])
 
 [connection signal="body_entered" from="TargetingCursor" to="TargetingCursor" method="_on_body_entered"]
 [connection signal="pressed" from="HUD/CampaignMapHUD/ActivateRosterUnit" to="Roster Manager" method="_on_activate_roster_unit_pressed"]

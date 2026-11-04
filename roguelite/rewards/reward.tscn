@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://u7tq6sykfl5m"]
+
+[ext_resource type="Script" uid="uid://g0ba67smmq7g" path="res://roguelite/rewards/reward.gd" id="1_3e8uv"]
+[ext_resource type="Texture2D" uid="uid://cbivxk7ayt438" path="res://assets/icon.svg" id="1_l354p"]
+
+[node name="Reward" type="VBoxContainer" unique_id=1681454503]
+script = ExtResource("1_3e8uv")
+
+[node name="TextureDescriptionContainer" type="HBoxContainer" parent="." unique_id=1648557648]
+layout_mode = 2
+
+[node name="RewardButton" type="Button" parent="TextureDescriptionContainer" unique_id=1957536073]
+layout_mode = 2
+icon = ExtResource("1_l354p")
+
+[node name="RewardDescription" type="Label" parent="TextureDescriptionContainer" unique_id=841485508]
+layout_mode = 2
+text = "Placeholder description"
+
+[node name="RewardLabel" type="Label" parent="." unique_id=1367911943]
+layout_mode = 2
+text = "Placeholder label"
+
+[connection signal="pressed" from="TextureDescriptionContainer/RewardButton" to="." method="_on_reward_button_pressed"]
